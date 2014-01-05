@@ -36,9 +36,9 @@
 			<?php
 $host="localhost";
 
-$usuario="elecgala_factura";
+$usuario="root";
 
-$pass= "acdc@1976#";
+$pass= "acdc1976";
 
 $codigoErr = "";
 
@@ -134,7 +134,7 @@ echo '</table>';
 // Liberar resultados
 mysql_free_result($result);
 
-// Cerrar la conexión
+// Cerrar la conexiï¿½n
 mysql_close($link);
 
 
@@ -206,7 +206,7 @@ echo '</table>';
 // Liberar resultados
 mysql_free_result($result);
 
-// Cerrar la conexión
+// Cerrar la conexiï¿½n
 mysql_close($link);
 
 

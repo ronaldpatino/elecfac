@@ -1,38 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
 <head>
-	
-	<link rel="stylesheet" type="text/css" href="estilo.css" title="estilo"/>
-	<title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/custom.css" rel="stylesheet">
 </head>
-
 <body>
 
-<div id="container" >
-	<div id="header">
+<div class="container">
+	<div class="row">
+	    <div class="col-xs-12">
+	    <img src="assets/img/consulta-tu-planilla.jpg">		
+	    </div>
+	</div>
+	<div class="row">
+	    <div class="col-xs-2">&nbsp;</div>
+	    <div class="col-xs-8">
+			<br/>
+		    <form class="form-inline" role="form" method="post" action="consulta.php">
+		        <label class="control-label" for="codigoruc">INGRESE SU CODIGO</label>
+		        <div class="form-group">
+		            <input type="text" class="form-control" id="codigoruc" name="codigo" value="">
+		        </div>
+		        <div class="form-group">
+		        
+		            <label>
+		                &nbsp;&nbsp;<input type="radio" name="criterio" value="Cliente" checked> Cliente
+		            </label>
+		            
+		            <label>
+		                &nbsp;&nbsp;<input type="radio" name="criterio" value="RUC"> RUC
+		            </label>
+		        </div>
 		
-<h3>Consulta</h3>
-
-<form method="post" action="consulta.php"> 
-   Ingrese su codigo: <input type="text" name="codigo" size="20" value="">
- 
-  <input type="radio" name="criterio" value="Cliente">Cliente
-  
- <input type="radio" name="criterio" value="RUC">RUC
-   <input type="submit" name="submit" value="Consultar"> 
-
-</form>
-
-	</div>
-
-
-
-	
-
-	<div id="footer">
-		
-	</div>
-
-	</div>
+		        &nbsp;&nbsp;<button type="submit" class="btn btn-primary">Consultar</button>
+		    </form>
+		</div>    
+	    <div class="col-xs-2">&nbsp;</div>    
+		</div>	
+	</div>    
+</div>
 </body>
 </html>

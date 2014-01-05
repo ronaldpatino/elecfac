@@ -1,52 +1,43 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<!DOCTYPE html>
 <head>
-	
-	<link rel="stylesheet" type="text/css" href="estilo.css" title="estilo"/>
-	<title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css">
+
+    <title></title>
 </head>
 
 <body>
+    <div id="container">
+    	<div class="row">
+		    <div class="col-xs-12">
+		    	<a href="http://www.elecgalapagos.com.ec/m" >
+		    	<img src="assets/img/otra-consulta.jpg" border="0">
+		    	</a>
+		    </div>
+		</div>
+        <div class="row">
+	    	<div class="col-xs-12" align="center">
 
-<div id="container" >
-	<div id="header">
-		
-<h3>Informacion para la factura</h3>
+<?php
+      //Set the Content Type
+      // Create Image From Existing File
+      $jpg_image = imagecreatefromjpeg('assets/img/planilla.jpg');
 
-
-
-	</div>
-
-
-
-	<div id="content">
-		
-	
-
-			<?php
-
-$host="localhost";
-
-$usuario="elecgala_factura";
-
-$pass= "acdc@1976#";
+      $txt_color = ImageColorAllocate ($jpg_image, 0, 0, 0);
 
 
-$codigoErr = "";
-
-$codigo = $_GET['cod'];
-
-
-//comprobacion en caso de que el codigo contenga caracteres
-// no numericos
- if (!preg_match("/^[0-9]*$/", $codigo) || $codigo=='')
-       {
+	$host="localhost";	
+	$usuario="elecgala_factura";	
+	$pass= "acdc@1976#";		
+	$codigoErr = "";	
+	$codigo = $_GET['cod'];
+	if (!preg_match("/^[0-9]*$/", $codigo) || $codigo=='')
+    {
        $codigoErr = "Error, el cliente no existe"; 
        echo $codigoErr;
-
- } 
-
-else {
+	}
+	else {
 
 			
 	$link = mysql_connect($host, $usuario, $pass)
@@ -75,89 +66,53 @@ $result = mysql_query($query) or die('Consulta fallida: ' . mysql_error());
 
 
 
-while($row = mysql_fetch_array($result)){
-
-
-echo 'Nombre: '.$row['per_nombre'];
-echo '<br>';
-
-
-echo 'Cedula/RUC: '.$row['per_cedula'];
-echo '<br>';
-
-echo 'Medidor: '.$row['med_numero'];
-echo '<br>';
-
-
-echo 'Direccion: '.$row['per_direccion'];
-echo '<br>';
-echo '</tr>';
-
-
-echo 'Tarifa: ';
-echo '<br>';
-
-echo 'Grupo Emision: ';
-echo '<br>';
-
-echo 'Codigo: '.$row['med_codigo_cliente'];
-echo '<br>';
-
-echo 'Periodo/consumo: '.$row['med_mes_anio'];
-echo '<br>';
-
-echo 'Ruta: ';
-echo '<br>';
-
-echo 'Consumo kwh: '.$row['med_consumo'];
-echo '<br>';
-
-echo 'Valor a pagar: '.$row['fdet_total'];
-echo '<br>';
-
-}
-
-
-
-
-// Liberar resultados
-mysql_free_result($result);
-
-// Cerrar la conexión
-mysql_close($link);
-
-
-
-
-
-
-
-
-
-		
-}
-
+	while($row = mysql_fetch_array($result)){
+	
+	
+ 	  ImageString ($jpg_image, 4, 75, 150, $row['per_nombre'], $txt_color);
+   	  ImageString ($jpg_image, 4, 75, 165, $row['per_cedula'], $txt_color);
+   	  ImageString ($jpg_image, 4, 75, 180, $row['med_numero'], $txt_color);
+      ImageString ($jpg_image, 4, 150, 195, $row['per_direccion'], $txt_color);
+   	  ImageString ($jpg_image, 4, 65, 210, "Tarifa", $txt_color);
+   	  ImageString ($jpg_image, 4, 115, 225, "Grupo Em", $txt_color);
+   	  
+  	  ImageString ($jpg_image, 4, 390, 150, $row['med_codigo_cliente'], $txt_color);
+  	  ImageString ($jpg_image, 4, 460, 180, $row['med_mes_anio'], $txt_color);
+   	  ImageString ($jpg_image, 4, 380, 210, "Ruta", $txt_color);
+   	  
+   	  
+  	  ImageString ($jpg_image, 4, 145, 378, "Actual", $txt_color);
+   	  ImageString ($jpg_image, 4, 265, 378, $row['med_consumo'] . ' kwh', $txt_color);
+   	  
+   	  
+   	  ImageString ($jpg_image, 2, 530, 340, "VE", $txt_color);
+  	  ImageString ($jpg_image, 2, 530, 350, "SUB", $txt_color);
+   	  ImageString ($jpg_image, 2, 530, 360, "CC", $txt_color);
+   	  ImageString ($jpg_image, 2, 530, 380, "TSE", $txt_color);   	  
+   	  ImageString ($jpg_image, 2, 530, 410, "TSE", $txt_color);   	     	  
+   	  ImageString ($jpg_image, 2, 530, 430, "CB", $txt_color);   	     	     	  
+   	  ImageString ($jpg_image, 2, 530, 440, "RB", $txt_color);   	     	     	  
+   	  ImageString ($jpg_image, 2, 530, 450, "AP", $txt_color);   	     	     	     	  
+   	  
+   	  
+   	  ImageString ($jpg_image, 2, 530, 470, "TP", $txt_color);   	     	     	     	     	  
+   	  ImageString ($jpg_image, 2, 530, 485, "VE", $txt_color);   	  
+   	  ImageString ($jpg_image, 2, 530, 495, "TO", $txt_color);   	     	  
+   	  ImageString ($jpg_image, 2, 530, 510, '$ '.$row['fdet_total'], $txt_color);   
 	
 
-
-
-
-
-?>
 	
+	}
 
+ }  	  
+      // Send Image to Browser
+      imagejpeg($jpg_image, 'fi/' . $codigo . '.jpg', 100);
 
-
-
-		
-	
-
+      // Clear Memory
+      imagedestroy($jpg_image);
+    ?> 
+    
+	<img src="fi/<?php echo $codigo . '.jpg';?>" border="0"/>
 	</div>
-
-	<div id="footer">
-		
-	</div>
-
-	</div>
-</body>
+</body>    
 </html>
